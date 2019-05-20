@@ -1,33 +1,21 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { increaseAction } from '../redux/actions/countActions'
 
-class Counter extends Component {
-  render() {
-    const { value, onIncreaseClick } = this.props
-    
-    return (
+export default () => {
+
+  const count = useSelector(state => state.count.count)
+  const dispatch = useDispatch()
+  const onIncreaseClick = useCallback(
+    () => dispatch(increaseAction),
+    []
+  )
+  
+  return (
     <div>
-      <span>count: {value}</span>
+      <span>count: {count}</span>
       <button onClick={onIncreaseClick}>Increase</button>
     </div>
-    )
-  }
-}
+  )
 
-function mapStateToProps(state) {
-  return {
-    value: state.count.count
-  }
 }
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onIncreaseClick: () => dispatch(increaseAction)
-  }
-}
-
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(Counter)

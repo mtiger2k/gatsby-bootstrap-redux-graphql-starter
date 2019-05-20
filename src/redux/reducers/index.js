@@ -8,7 +8,7 @@ const appReducer = combineReducers({
 })
 
 export default function (state, action) {
-  if (action.type === 'SIGNOUT_USER') {
+  if (action.type === 'LOGOUT_USER') {
     state = undefined // eslint-disable-line no-param-reassign
   }
   return appReducer(state, action)
