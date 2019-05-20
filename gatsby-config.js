@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   pathPrefix: "/gatsby-bootstrap-redux-graphql-starter",
   siteMetadata: {
@@ -26,6 +30,7 @@ module.exports = {
         background_color: `#20232a`,
         theme_color: `#20232a`,
         display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
