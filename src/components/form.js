@@ -20,7 +20,7 @@ export default () => {
 	      login,
 	      password,
 	    } = state
-		dispatch(requestLogin(login, password))
+		dispatch(requestLogin(login, password)).then(result => console.log('Yaay!', result))
 	}
 
 	return (

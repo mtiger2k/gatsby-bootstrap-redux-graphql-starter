@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga';
-import thunk from 'redux-thunk'
+import { middleware as thunkMiddleware } from 'redux-saga-thunk'
 import logger from 'redux-logger'
 import rootReducer from './reducers'
 import rootSaga from '../sagas';
 
 const initialState = {}
 const saga = createSagaMiddleware();
-const middleware = [saga, thunk]
+const middleware = [thunkMiddleware, saga]
 
 if (process.env.NODE_ENV === 'development'){
   middleware.push(logger)

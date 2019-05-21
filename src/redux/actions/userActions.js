@@ -10,33 +10,33 @@ import {
 export const requestLogin = (login, password) => {
   return {
     type: REQUEST_LOGIN,
-    login, password
+    login, password,
+    meta: {
+      thunk: true
+    }
   }
 }
 
 export const fetchUser = () => {
   return {
     type: FETCH_USER,
+    meta: {
+      thunk: true
+    }
   }
 }
 
-export const loginUser = (user) => (dispatch) => {
-  dispatch({
-    type: LOADING,
-  })
+export const loginUser = (user) => {
   // Login goes here
-  dispatch({
+  return {
     type: LOGIN_USER,
     payload: user,
-  })
+  }
 }
 
-export const logoutUser = () => (dispatch) => {
-  dispatch({
-    type: LOADING,
-  })
+export const logoutUser = () => {
   // Logout goes here
-  dispatch({
+  return ({
     type: LOGOUT_USER,
     payload: null,
   })

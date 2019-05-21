@@ -4,7 +4,7 @@ import { loginApi, fetchMeApi } from '../api/auth';
 import { navigate } from '@reach/router'
 
 function* handleLogin(action) {
-  const { login, password } = action;
+  const { login, password, meta } = action;
 
   try {
     const user = yield call(loginApi, login, password);
@@ -12,7 +12,7 @@ function* handleLogin(action) {
     if (user && user.token) {
       yield put({type: LOGIN_USER, payload: user});
       const me = yield call(fetchMeApi);
-      yield put({type: LOGIN_USER, payload: {...me, token: user.token}});
+      yield put({type: LOGIN_USER, payload: {...me, token: user.token}, meta});
 
     	localStorage.setItem('bearer_token', user.token)
     	navigate('/app/profile')
@@ -25,9 +25,10 @@ function* handleLogin(action) {
 }
 
 function* handleFetchMe(action) {
+  const { meta } = action
   try {
     const me = yield call(fetchMeApi);
-    yield put({type: LOGIN_USER, payload: {...me, token: localStorage.getItem('bearer_token')}});
+    yield put({type: LOGIN_USER, payload: {...me, token: localStorage.getItem('bearer_token')}, meta});
 
   } catch (error) {
     localStorage.removeItem('bearer_token')
