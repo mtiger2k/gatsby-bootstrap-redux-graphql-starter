@@ -1,5 +1,5 @@
 import { takeEvery, all } from 'redux-saga/effects';
-import { REQUEST_LOGIN, FETCH_USER } from '../redux/actions/types';
+import { REQUEST_LOGIN, FETCH_USER } from '../actions/types';
 import { handleLogin, handleFetchMe } from './auth';
 
 function *watchAll() {

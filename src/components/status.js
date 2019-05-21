@@ -1,52 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from '@reach/router'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import LogoutButton from './LogoutButton'
 
 
-const mapStateToProps = (props) => {
-  const { user } = props
-  return user
-}
+export default () => {
 
-class Status extends Component {
+  const user = useSelector(state => state.user.user)
 
-  render(){
-    let details
-    let color = this.props.color || 'inherit'
-    let linkColor = this.props.linkColor || 'primary'
-    const { user } = this.props
+  let details
 
-    if (!user) {
-      details = (
-        <p style={{color: 'white'}}>
-          To get the full app experience, you’ll need to
-          {` `}
-          <Link to='/app/login' style={{color: linkColor }}>log in</Link>.
-        </p>
-      )
-    } else {
-      const { username, email } = user
+  if (!user) {
+    details = (
+      <p style={{color: 'white'}}>
+        To get the full app experience, you’ll need to
+        {` `}
+        <Link to='/app/login'>log in</Link>.
+      </p>
+    )
+  } else {
+    const { username, email } = user
 
-      details = (
-        <p style={{color: 'white'}}>
-          Logged in as 
-          {` `}
-          <Link
-            to='/app/profile'
-            style={{ color: color }}
-          >
-            {username} {email}
-          </Link>
-          {` - `}
-          <LogoutButton style={{ color: linkColor }}>Logout</LogoutButton>
-        </p>
-      )
-    }
-
-    return <div>{details}</div>
+    details = (
+      <p style={{color: 'white'}}>
+        Logged in as 
+        {` `}
+        <Link
+          to='/app/profile'
+        >
+          {username} {email}
+        </Link>
+        {` - `}
+        <LogoutButton>Logout</LogoutButton>
+      </p>
+    )
   }
-}
 
-export default connect(mapStateToProps)(Status)
+  return (<div>{details}</div>)
+
+}

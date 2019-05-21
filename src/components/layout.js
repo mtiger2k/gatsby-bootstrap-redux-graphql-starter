@@ -10,8 +10,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import { Container, Row, Col } from "react-bootstrap"
 
-import { useSelector, useDispatch, shallowEqual } from 'react-redux'
-import gql from 'graphql-tag'
+import { useDispatch } from 'react-redux'
 import Header from "./header"
 import Navbar from "./navBar"
 

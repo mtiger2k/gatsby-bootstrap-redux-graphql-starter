@@ -1,5 +1,5 @@
 import gql from 'graphql-tag'
-import client from '../apollo/client'
+import client from '../../apollo/client'
 
 const LOGIN = gql`
   mutation($login: String!, $password: String!) {

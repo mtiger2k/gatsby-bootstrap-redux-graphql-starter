@@ -1,38 +1,18 @@
-import React, { Component } from 'react'
-import gql from 'graphql-tag'
+import React from 'react'
 import { navigate } from '@reach/router'
-import store from '../redux/store'
-import client from '../apollo/client'
-
+import { useDispatch } from 'react-redux'
 import { logoutUser } from '../redux/actions/userActions';
 
-class LogoutButton extends Component {
-  logout = () => {
-    /*client.mutate({
-      mutation: LOGOUT,
-    }).then(({ data }) => {
-      if (data.logout) {
-        navigate('/')
-      }
-    })*/
-    store.dispatch(logoutUser())
+export default ({children}) => {
+  const dispatch = useDispatch()
+  const logout = () => {
+    dispatch(logoutUser())
     localStorage.removeItem('bearer_token')
+    navigate('/')
   }
-
-  render() {
-    const { children } = this.props
-    return (
-      <a {...this.props} onClick={this.logout}>
-        {children}
-      </a>
-    )
-  }
+  return (
+    <a href="#" onClick={logout}>
+      {children}
+    </a>
+  )
 }
-
-export default LogoutButton
-
-const LOGOUT = gql`
-  mutation Logout {
-    logout
-  }
-`

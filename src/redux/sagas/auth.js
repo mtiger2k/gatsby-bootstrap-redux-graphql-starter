@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import { LOGIN_USER } from '../redux/actions/types';
+import { LOGIN_USER } from '../actions/types';
 import { loginApi, fetchMeApi } from '../api/auth';
 import { navigate } from '@reach/router'
 
