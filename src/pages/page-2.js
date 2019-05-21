@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import Counter from '../components/counter'
+import Hero from "../components/hero"
 
 const SecondPage = () => (
   <Layout pageInfo={{ pageName: "page-2" }}>
@@ -14,6 +15,8 @@ const SecondPage = () => (
     <Link to="/">Go back to the homepage</Link>
 
     <Counter />
+
+    <Hero />
 
   </Layout>
 )

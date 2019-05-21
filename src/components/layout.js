@@ -41,6 +41,14 @@ const Layout = ({ children, pageInfo }) => {
             title
           }
         }
+        generalJson {
+          footer {
+            elements {
+              headline
+              text
+            }
+          }
+        }
       }
     `}
     render={data => (
@@ -64,6 +72,12 @@ const Layout = ({ children, pageInfo }) => {
           <Row noGutters>
             <Col className="footer-col">
               <footer>
+                {data.generalJson.footer.elements.map((element, index) => (
+                  <div key={`footer-${index}`}>
+                    <h4>{element.headline}</h4>
+                    <p color='white' dangerouslySetInnerHTML={{__html: element.text }} />
+                  </div>
+                ))}
                 <span>
                   © {new Date().getFullYear()}, Built with
                   {` `}
