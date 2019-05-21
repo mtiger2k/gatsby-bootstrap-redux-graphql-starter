@@ -1,5 +1,6 @@
 import {
   REQUEST_LOGIN,
+  FETCH_USER,
   LOGIN_USER,
   LOGOUT_USER,
   LOADING,
@@ -10,6 +11,12 @@ export const requestLogin = (login, password) => {
   return {
     type: REQUEST_LOGIN,
     login, password
+  }
+}
+
+export const fetchUser = () => {
+  return {
+    type: FETCH_USER,
   }
 }
 

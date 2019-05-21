@@ -15,49 +15,20 @@ import gql from 'graphql-tag'
 import Header from "./header"
 import Navbar from "./navBar"
 
-import client from '../apollo/client'
-import store from '../redux/store'
-
-import { loginUser, logoutUser } from '../redux/actions/userActions'
-
-const TOKEN_LOGIN = gql`
-  {
-    me {
-      id
-      username
-      email
-      role
-    }
-  }
-`
+import { loginUser, fetchUser, logoutUser } from '../redux/actions/userActions'
 
 const Layout = ({ children, pageInfo }) => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user, shallowEqual)
 
   useEffect(() => {
-
-    async function fetchUser() {
-      const { data: {me} } = await client.query({
-        query: TOKEN_LOGIN
-      })
-
-      const data = {tokenLogin: {token: bearerToken, username: me.username, email: me.email}}
-
-      store.dispatch(loginUser(data.tokenLogin))
-
-      if (data.tokenLogin) localStorage.setItem('bearer_token', data.tokenLogin.token, '/')
-      else localStorage.removeItem('bearer_token')
-
-    }
 
     const bearerToken = localStorage.getItem('bearer_token')
 
     if (bearerToken && bearerToken !== ''){
-      store.dispatch(loginUser({ token: bearerToken }))
-      fetchUser();
+      dispatch(loginUser({ token: bearerToken }))
+      dispatch(fetchUser());
     }else{
-      store.dispatch(logoutUser())
+      dispatch(logoutUser())
     }
 
   }, [])
