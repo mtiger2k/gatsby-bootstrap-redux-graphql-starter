@@ -27,7 +27,7 @@ class Status extends Component {
         </p>
       )
     } else {
-      const { firstName, lastName } = user
+      const { username, email } = user
 
       details = (
         <p style={{color: 'white'}}>
@@ -37,7 +37,7 @@ class Status extends Component {
             to='/app/profile'
             style={{ color: color }}
           >
-            {firstName} {lastName}
+            {username} {email}
           </Link>
           {` - `}
           <LogoutButton style={{ color: linkColor }}>Logout</LogoutButton>

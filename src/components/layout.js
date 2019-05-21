@@ -42,7 +42,7 @@ const Layout = ({ children, pageInfo }) => {
         query: TOKEN_LOGIN
       })
 
-      const data = {tokenLogin: {token: bearerToken, firstName: me.username, lastName: me.email, email: me.email}}
+      const data = {tokenLogin: {token: bearerToken, username: me.username, email: me.email}}
 
       store.dispatch(loginUser(data.tokenLogin))
 

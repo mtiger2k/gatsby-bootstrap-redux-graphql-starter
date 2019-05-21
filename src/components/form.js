@@ -1,48 +1,27 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-import { navigate } from '@reach/router'
-import gql from 'graphql-tag'
-import store from '../redux/store'
-import client from '../apollo/client'
-import { loginUser } from '../redux/actions/userActions'
+import { useDispatch } from 'react-redux'
+import { requestLogin } from '../redux/actions/userActions'
 
 // rwieruch
 
 export default () => {
+	const dispatch = useDispatch()
 	const [ state, setState ] = useState({username: '', password: ''})
 	const onChange = e => {
 		const { name, value } = e.target
 		setState({...state, [name]: value})
 	}
 
-	const onSubmit = async (e) => {
-	    e.preventDefault()
-
+	const onSubmit = (e) => {
+		e.preventDefault()
 	    const {
 	      login,
 	      password,
 	    } = state
-
-
-	    const { data } = await client.mutate({
-	      mutation: LOGIN,
-	      variables: {
-	        login,
-	        password,
-	      },
-	    })
-
-	    store.dispatch(loginUser(data.signIn))
-
-	    if (data.signIn) localStorage.setItem('bearer_token', data.signIn.token)
-	    else localStorage.removeItem('bearer_token')
-
-	    if (data && data.signIn) {
-	      navigate('/app/profile')
-	    }
+		dispatch(requestLogin(login, password))
 	}
-
 
 	return (
 		<Form onSubmit={onSubmit}>
@@ -61,11 +40,3 @@ export default () => {
 		</Form>
 	)
 }
-
-const LOGIN = gql`
-  mutation($login: String!, $password: String!) {
-    signIn(login: $login, password: $password) {
-      token
-    }
-  }
-`

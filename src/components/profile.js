@@ -13,18 +13,17 @@ class Profile extends Component{
 
   render(){
     const { user } = this.props
-    const { firstName, lastName, email } = user
+    const { username, email } = user
     
     return (
       <Container className="text-center">
         
-        <h1>Welcome back, {firstName} {lastName}!</h1>
+        <h1>Welcome back, {username}!</h1>
         <Card>
           <Card.Body>
           <Card.Title>User Data:</Card.Title>
           <Card.Text>
-            Firstname: {firstName}<br/>
-            Lastname: {lastName}<br/>
+            username: {username}<br/>
             E-Mail: {email}
           </Card.Text>
           </Card.Body>

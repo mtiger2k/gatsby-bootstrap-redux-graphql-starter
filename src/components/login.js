@@ -17,7 +17,7 @@ class Login extends React.Component {
       return <Redirect to='/app/profile' noThrow />
     }else{
       return (
-        <Container className="text-center">
+        <Container>
           <Card>
             <Card.Title>Log in</Card.Title>
             <Card.Body>

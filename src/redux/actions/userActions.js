@@ -1,9 +1,17 @@
 import {
+  REQUEST_LOGIN,
   LOGIN_USER,
   LOGOUT_USER,
   LOADING,
   REGISTER_USER,
 } from './types'
+
+export const requestLogin = (login, password) => {
+  return {
+    type: REQUEST_LOGIN,
+    login, password
+  }
+}
 
 export const loginUser = (user) => (dispatch) => {
   dispatch({
