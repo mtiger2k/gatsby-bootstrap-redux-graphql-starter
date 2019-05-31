@@ -2,14 +2,18 @@ import { combineReducers } from 'redux'
 import userReducer from './userReducer'
 import countReducer from './countReducer'
 
-const appReducer = combineReducers({
-  user: userReducer,
-  count: countReducer
-})
+export default function createReducer(injectedReducers = {}) {
+console.log('create reducer...', injectedReducers)
+	const appReducer = combineReducers({
+	  user: userReducer,
+	  //count: countReducer,
+	  ...injectedReducers,
+	})
 
-export default function (state, action) {
-  if (action.type === 'LOGOUT_USER') {
-    state = undefined // eslint-disable-line no-param-reassign
-  }
-  return appReducer(state, action)
+	return function (state, action) {
+	  if (action.type === 'LOGOUT_USER') {
+	    state = undefined // eslint-disable-line no-param-reassign
+	  }
+	  return appReducer(state, action)
+	}
 }

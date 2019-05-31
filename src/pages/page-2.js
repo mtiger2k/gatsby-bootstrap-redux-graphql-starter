@@ -7,18 +7,29 @@ import SEO from "../components/seo"
 import Counter from '../components/counter'
 import Hero from "../components/hero"
 
-const SecondPage = () => (
-  <Layout pageInfo={{ pageName: "page-2" }}>
-    <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link>
+import { useInjectReducer } from '../utils/injectReducer';
+//import { useInjectSaga } from '../utils/injectSaga';
 
-    <Counter />
+import reducer from '../redux/reducers/countReducer'
+const key = 'count';
 
-    <Hero />
+const SecondPage = () => {
 
-  </Layout>
-)
+	useInjectReducer({ key, reducer });
+
+	return (
+	  <Layout pageInfo={{ pageName: "page-2" }}>
+	    <SEO title="Page two" />
+	    <h1>Hi from the second page</h1>
+	    <p>Welcome to page 2</p>
+	    <Link to="/">Go back to the homepage</Link>
+
+	    <Counter />
+
+	    <Hero />
+
+	  </Layout>
+	)
+}
 
 export default SecondPage

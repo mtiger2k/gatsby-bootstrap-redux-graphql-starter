@@ -2,9 +2,12 @@ import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { increaseAction } from '../redux/actions/countActions'
 
+import { selectCount } from '../redux/selectors/count'
+
 export default () => {
 
-  const count = useSelector(state => state.count.count)
+console.log('Counter init...')
+  const { count } = useSelector(selectCount)
   const dispatch = useDispatch()
   const onIncreaseClick = useCallback(
     () => dispatch(increaseAction),

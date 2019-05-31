@@ -5,32 +5,15 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React, {useEffect} from "react"
+import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 
 import { Container, Row, Col } from "react-bootstrap"
 
-import { useDispatch } from 'react-redux'
 import Header from "./header"
 import Navbar from "./navBar"
 
-import { loginUser, fetchUser, logoutUser } from '../redux/actions/userActions'
-
 const Layout = ({ children, pageInfo }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-
-    const bearerToken = localStorage.getItem('bearer_token')
-
-    if (bearerToken && bearerToken !== ''){
-      dispatch(loginUser({ token: bearerToken }))
-      dispatch(fetchUser());
-    }else{
-      dispatch(logoutUser())
-    }
-
-  }, [])
 
   return (
   <StaticQuery

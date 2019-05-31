@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga';
 import { middleware as thunkMiddleware } from 'redux-saga-thunk'
 import logger from 'redux-logger'
-import rootReducer from './reducers'
+import createReducer from './reducers'
 import rootSaga from './sagas';
 
 const initialState = {}
@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development'){
 }
 
 const store = createStore(
-  rootReducer,
+  createReducer(),
   initialState,
   compose(
     applyMiddleware(...middleware),
@@ -23,5 +23,9 @@ const store = createStore(
 )
 
 saga.run(rootSaga);
+
+store.runSaga = saga.run;
+store.injectedReducers = {}; // Reducer registry
+store.injectedSagas = {}; // Saga registry
 
 export default store
