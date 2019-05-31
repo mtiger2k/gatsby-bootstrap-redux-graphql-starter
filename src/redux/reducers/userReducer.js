@@ -1,6 +1,6 @@
 import { LOGIN_USER, LOGOUT_USER } from '../actions/types'
 
-const initialState = {
+export const initialState = {
   user: {},
   loading: false,
 }

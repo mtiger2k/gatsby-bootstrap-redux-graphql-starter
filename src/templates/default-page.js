@@ -1,4 +1,4 @@
-import React, { Fragment, createElement } from "react"
+import React, { createElement } from "react"
 import { graphql } from "gatsby"
 import marksy from 'marksy'
 import Highlight from 'react-highlight.js'

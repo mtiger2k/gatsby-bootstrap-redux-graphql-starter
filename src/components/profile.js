@@ -2,10 +2,11 @@
 import React from 'react'
 import { Container, Card } from "react-bootstrap"
 import { useSelector } from 'react-redux'
+import { selectUser } from '../redux/selectors/user'
 
 export default () => {
 
-  const user = useSelector(state => state.user.user)
+  const { user } = useSelector(selectUser)
   const { username, email } = user
   
   return (

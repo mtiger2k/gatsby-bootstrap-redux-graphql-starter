@@ -1,5 +1,4 @@
 // styled-components based extension
-import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@magicsoup.io/stock'
 

@@ -3,10 +3,12 @@ import { Redirect } from '@reach/router'
 import Form from './form'
 import { Container, Card } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
+import { selectUser } from '../redux/selectors/user'
 
 export default () => {
 
-  const user = useSelector(state => state.user.user)
+  const { user } = useSelector(selectUser)
+  
   if(user && user.email){
     return <Redirect to='/app/profile' noThrow />
   }else{

@@ -6,7 +6,6 @@ import { selectCount } from '../redux/selectors/count'
 
 export default () => {
 
-console.log('Counter init...')
   const { count } = useSelector(selectCount)
   const dispatch = useDispatch()
   const onIncreaseClick = useCallback(

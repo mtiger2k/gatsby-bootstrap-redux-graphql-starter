@@ -8,7 +8,6 @@ import Counter from '../components/counter'
 import Hero from "../components/hero"
 
 import { useInjectReducer } from '../utils/injectReducer';
-//import { useInjectSaga } from '../utils/injectSaga';
 
 import reducer from '../redux/reducers/countReducer'
 const key = 'count';
