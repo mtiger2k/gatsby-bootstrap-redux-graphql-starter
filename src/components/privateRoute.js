@@ -1,11 +1,11 @@
 import React from 'react'
 import { Redirect } from '@reach/router'
 import { useSelector } from "react-redux"
-import { selectUser } from '../redux/selectors/user'
+import { makeSelectUser } from '../redux/selectors/user'
 
 export default ({ component: Component, location, ...rest }) => {
   
-  const { user } = useSelector(selectUser)
+  const user = useSelector(makeSelectUser())
 
   if (!user && location.pathname !== `/app/login`) {
     // If we’re not logged in, redirect to login page.

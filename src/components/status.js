@@ -3,11 +3,11 @@ import { Link } from '@reach/router'
 import { useSelector } from 'react-redux'
 
 import LogoutButton from './LogoutButton'
-import { selectUser } from '../redux/selectors/user'
+import { makeSelectUser } from '../redux/selectors/user'
 
 export default () => {
 
-  const { user } = useSelector(selectUser)
+  const user = useSelector(makeSelectUser())
 
   let details
 
